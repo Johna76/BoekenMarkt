@@ -24,7 +24,7 @@ public class AangebodenBoekEJB {
     private EntityManager em;
     
     
-    public AangebodenBoek CreateAangebodenBOek(AangebodenBoek b){
+    public AangebodenBoek CreateAangebodenBoek(AangebodenBoek b){
         em.persist(b);
         return b;
     }
@@ -35,6 +35,8 @@ public class AangebodenBoekEJB {
         List<AangebodenBoek> resultList = query.getResultList();
         return resultList;        
     }
+    
+    
     
     
 }

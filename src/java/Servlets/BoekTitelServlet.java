@@ -5,10 +5,12 @@
  */
 package Servlets;
 
-import Beans.UserEJB;
-import DAL.User;
+import Beans.BoekEJB;
+import DAL.Boek;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,10 +23,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author Johna
  */
-public class LogInServlet extends HttpServlet {
-    @EJB
-    UserEJB userSevice;
+public class BoekTitelServlet extends HttpServlet {
 
+    @EJB
+    BoekEJB boekService;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,23 +39,17 @@ public class LogInServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String userName = request.getParameter("userName");
-        String passwordInput = request.getParameter("password");
-                      
-        User u = userSevice.FindByStudentennummer(userName);
-        String passwordDB = u.getWachtwoord();
+        ArrayList<String> allRichting = boekService.GetAllRichtingen();
+        List<Boek> allBoek = (List<Boek>)boekService.GetAllAangebodenBoeken();
         
-        if(passwordInput.equals(passwordDB)){
-            RequestDispatcher rd = request.getRequestDispatcher("/ListAangBoekServlet");
-            rd.forward(request, response);
-        }
-        else{
-            RequestDispatcher rd = request.getRequestDispatcher("fout.html");
-            rd.forward(request, response);
-        }
+        HttpSession session = request.getSession();
+        session.setAttribute("richting", allRichting);
+        session.setAttribute("boeken", allBoek);
+                
         
         
-        
+        RequestDispatcher rd = request.getRequestDispatcher("NieuwBoek.jsp");
+        rd.forward(request, response);
         
     }
 

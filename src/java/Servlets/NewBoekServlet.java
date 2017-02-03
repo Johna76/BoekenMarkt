@@ -5,25 +5,18 @@
  */
 package Servlets;
 
-import Beans.UserEJB;
-import DAL.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Johna
  */
-public class LogInServlet extends HttpServlet {
-    @EJB
-    UserEJB userSevice;
+public class NewBoekServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,24 +30,7 @@ public class LogInServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String userName = request.getParameter("userName");
-        String passwordInput = request.getParameter("password");
-                      
-        User u = userSevice.FindByStudentennummer(userName);
-        String passwordDB = u.getWachtwoord();
-        
-        if(passwordInput.equals(passwordDB)){
-            RequestDispatcher rd = request.getRequestDispatcher("/ListAangBoekServlet");
-            rd.forward(request, response);
-        }
-        else{
-            RequestDispatcher rd = request.getRequestDispatcher("fout.html");
-            rd.forward(request, response);
-        }
-        
-        
-        
-        
+        int id = Integer.parseInt(request.getParameter("BoekID"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

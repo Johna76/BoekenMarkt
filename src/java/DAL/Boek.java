@@ -35,6 +35,7 @@ import javax.validation.constraints.Size;
     , @NamedQuery(name = "Boek.findByAuteur", query = "SELECT b FROM Boek b WHERE b.auteur = :auteur")
     , @NamedQuery(name = "Boek.findByIsbn", query = "SELECT b FROM Boek b WHERE b.isbn = :isbn")
     , @NamedQuery(name = "Boek.findByRichting", query = "SELECT b FROM Boek b WHERE b.richting = :richting")})
+
 public class Boek implements Serializable {
 
     private static final long serialVersionUID = 1L;

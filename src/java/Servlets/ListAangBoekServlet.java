@@ -9,7 +9,6 @@ import Beans.AangebodenBoekEJB;
 import DAL.AangebodenBoek;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -23,10 +22,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Johna
  */
-public class ListAangebodenBoekenServlet extends HttpServlet {
-    
+public class ListAangBoekServlet extends HttpServlet {
     @EJB
-    AangebodenBoekEJB aangebodenBoekService;
+    AangebodenBoekEJB aangBoekService;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,16 +37,15 @@ public class ListAangebodenBoekenServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    
         
-        List<AangebodenBoek> ListAangebodenBoek = aangebodenBoekService.GetAllAangebodenBoeken();
+        List<AangebodenBoek> ListAangebodenBoek = aangBoekService.GetAllAangebodenBoeken();
         
         HttpSession session = request.getSession();
         session.setAttribute("list", ListAangebodenBoek);
         
         RequestDispatcher rd = request.getRequestDispatcher("Overview.jsp");
         rd.forward(request, response);
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

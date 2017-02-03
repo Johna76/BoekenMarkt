@@ -17,8 +17,24 @@
         <servlet-class>Servlets.LogInServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListAangebodenBoekenServlet</servlet-name>
-        <servlet-class>Servlets.ListAangebodenBoekenServlet</servlet-class>
+        <servlet-name>ListAangBoekServlet</servlet-name>
+        <servlet-class>Servlets.ListAangBoekServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateAangBoekServlet</servlet-name>
+        <servlet-class>Servlets.CreateAangBoekServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BoekTitelServlet</servlet-name>
+        <servlet-class>Servlets.BoekTitelServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilteredBoekList</servlet-name>
+        <servlet-class>Servlets.FilteredBoekList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewBoekServlet</servlet-name>
+        <servlet-class>Servlets.NewBoekServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegistreerServlet</servlet-name>
@@ -37,8 +53,24 @@
         <url-pattern>/LogInServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListAangebodenBoekenServlet</servlet-name>
-        <url-pattern>/ListAangebodenBoekenServlet</url-pattern>
+        <servlet-name>ListAangBoekServlet</servlet-name>
+        <url-pattern>/ListAangBoekServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateAangBoekServlet</servlet-name>
+        <url-pattern>/CreateAangBoekServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BoekTitelServlet</servlet-name>
+        <url-pattern>/BoekTitelServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilteredBoekList</servlet-name>
+        <url-pattern>/FilteredBoekList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewBoekServlet</servlet-name>
+        <url-pattern>/NewBoekServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

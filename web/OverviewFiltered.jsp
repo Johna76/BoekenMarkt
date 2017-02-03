@@ -4,6 +4,7 @@
     Author     : Johna
 --%>
 
+<%@page import="DAL.Boek"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DAL.AangebodenBoek"%>
@@ -11,36 +12,37 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
         <title>JSP Page</title>
     </head>
     <body>
         <h1>Hello World!</h1>
-        
+        <form action="/Web_BoekenMarkt/NewBoekServlet" method="POST">
         <table>
             <tr>
                 <th>Omschrijving</th>
                 <th>ISBN</th>
-                <th>Prijs</th>
+                <th>Richting</th>
             </tr>
                 <%
-                    List<AangebodenBoek> lijstAangebodenBoeken = (List<AangebodenBoek>)session.getAttribute("list");
-                for (AangebodenBoek boek : lijstAangebodenBoeken) {
+                    List<Boek> lijstBoeken = (List<Boek>)session.getAttribute("filteredList");
+                for (Boek boek : lijstBoeken) {
                         %> <tr>
                             <td>
-                                <%= boek.getBoekID().getTitel()%>      
+                                <a href="/Web_BoekenMarkt/NewBoekServlet?BoekID=<%= boek.getId()%>"><%= boek.getTitel()%></a>      
                             </td>
                             <td>
-                                <%= boek.getBoekID().getIsbn()%>
+                                <%= boek.getIsbn()%>
                             </td>
                             <td>
-                                <%= boek.getPrijs()%>
+                                <%= boek.getRichting()%>
                             </td>
                         </tr>
                             <%
                     }
-                %>   
+                %>
+                
         </table>
-        
+        </form>
     </body>
 </html>
