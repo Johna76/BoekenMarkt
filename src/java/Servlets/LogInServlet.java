@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Beans.LoginEJB;
 import Beans.UserEJB;
 import DAL.User;
 import java.io.IOException;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpSession;
  */
 public class LogInServlet extends HttpServlet {
     @EJB
-    UserEJB userSevice;
+    LoginEJB loginService;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,12 +39,12 @@ public class LogInServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String userName = request.getParameter("userName");
-        String passwordInput = request.getParameter("password");
-                      
-        User u = userSevice.FindByStudentennummer(userName);
-        String passwordDB = u.getWachtwoord();
+        String passwordInput = request.getParameter("password");       
         
-        if(passwordInput.equals(passwordDB)){
+                      
+        boolean check = loginService.LoginCorrect(userName, passwordInput);
+        
+        if(check == true){
             RequestDispatcher rd = request.getRequestDispatcher("/ListAangBoekServlet");
             rd.forward(request, response);
         }
@@ -51,10 +52,6 @@ public class LogInServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("fout.html");
             rd.forward(request, response);
         }
-        
-        
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
