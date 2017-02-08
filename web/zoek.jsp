@@ -50,17 +50,17 @@ function clearText(field)
         <ul>
             <li><a href="/Web_BoekenMarkt/ListAangBoekenServlet">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="/Web_BoekenMarkt/ZoekpgWeegevenServlet">Zoek</a></li>
-            <li><a href="/Web_BoekenMarkt/NieuwBoekStp1Servlet" class="selected">Verkoop boek</a></li>
+            <li><a href="/Web_BoekenMarkt/ZoekpgWeegevenServlet" class="selected">Zoek</a></li>
+            <li><a href="/Web_BoekenMarkt/NieuwBoekStp1Servlet">Verkoop boek</a></li>
             <li><a href="/Web_BoekenMarkt/OverzichtMijnBoekenServlet">Mijn boeken</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <br style="clear: left" />
     </div> <!-- end of templatemo_menu -->
     <div id="templatemo_main">
-   	<h1>Nieuw boek te koop aanbieden</h1>        
+   	<h1>Zoek boek</h1>        
         <div id="search">
-            <h3>Stap 1 : Selecteer het boek dat je wenst te verkopen</h3>
+            <h3>Stap 1 : Selecteer het boek dat je wenst te zoeken</h3>
         <form action="/Web_BoekenMarkt/FilteredBoekList" method="post" id="richting"> 
         <table id="searchTable">
         	<tr>
@@ -87,7 +87,7 @@ function clearText(field)
         		<td><input type="reset" value="Leeg velden"></td>
         		<td></td>
         		<td></td>
-        		<td></td><input type="hidden" name="test" value=""></input>
+                        <td></td><input type="hidden" name="test" value="search"></input>
         	</tr>
         </table>
         </form>
@@ -116,7 +116,7 @@ function clearText(field)
                             <td>
                                 <%= boek.getRichting()%>
                             </td>
-                                <td><a href="/Web_BoekenMarkt/NieuwBoekStp2Servlet?BoekID=<%= boek.getId()%>" class="more">Select</a></td>
+                                <td><a href="/Web_BoekenMarkt/ZoekResultaatServlet?BoekID=<%= boek.getId()%>" class="more">Select</a></td>
                         </tr>
                             <%
                     }

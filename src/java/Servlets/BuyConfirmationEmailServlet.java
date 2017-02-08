@@ -44,11 +44,11 @@ public class BuyConfirmationEmailServlet extends HttpServlet {
         //User u = userService.FindById(aangBoekId);
         String subject = "Confirmation Email voor uw boek";
         String message = "Onderstaande persoon is geïnteresseerd in uw boek.";
-        String toEmail = "jonathan.fievet99@gmail.com";
+        String toEmail = "";
         
-        String fromEmail = "jonathan.fievet99@gmail.com";
-        String username = "jonathan.fievet99";
-        String password = "Pronstar69";
+        String fromEmail = "";
+        String username = "";
+        String password = "";
         
         try {
             mailSender.sendEmail(fromEmail, username, password, toEmail, subject, message);

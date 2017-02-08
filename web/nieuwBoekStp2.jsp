@@ -48,6 +48,7 @@ function clearText(field)
         <ul>
             <li><a href="/Web_BoekenMarkt/ListAangBoekenServlet">Home</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="/Web_BoekenMarkt/ZoekpgWeegevenServlet">Zoek</a></li>
             <li><a href="/Web_BoekenMarkt/NieuwBoekStp1Servlet" class="selected">Verkoop boek</a></li>
             <li><a href="/Web_BoekenMarkt/OverzichtMijnBoekenServlet">Mijn boeken</a></li>
             <li><a href="contact.html">Contact</a></li>

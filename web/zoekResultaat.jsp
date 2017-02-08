@@ -1,5 +1,4 @@
-
-<%@page import="DAL.Boek"%>
+<%@page import="DAL.AangebodenBoek"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,85 +47,69 @@ function clearText(field)
     </div><!-- END of templatemo_header -->
     <div id="templatemo_menu" class="ddsmoothmenu">
         <ul>
-            <li><a href="/Web_BoekenMarkt/ListAangBoekenServlet">Home</a></li>
+            <li><a href="/Web_BoekenMarkt/ListAangBoekenServlet" class="selected">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="/Web_BoekenMarkt/ZoekpgWeegevenServlet">Zoek</a></li>
-            <li><a href="/Web_BoekenMarkt/NieuwBoekStp1Servlet" class="selected">Verkoop boek</a></li>
+            <li><a href="/Web_BoekenMarkt/ZoekpgWeegevenServlet" class="selected">Zoek</a></li>
+            <li><a href="/Web_BoekenMarkt/NieuwBoekStp1Servlet">Verkoop boek</a></li>
             <li><a href="/Web_BoekenMarkt/OverzichtMijnBoekenServlet">Mijn boeken</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
         <br style="clear: left" />
     </div> <!-- end of templatemo_menu -->
-    <div id="templatemo_main">
-   	<h1>Nieuw boek te koop aanbieden</h1>        
-        <div id="search">
-            <h3>Stap 1 : Selecteer het boek dat je wenst te verkopen</h3>
-        <form action="/Web_BoekenMarkt/FilteredBoekList" method="post" id="richting"> 
-        <table id="searchTable">
-        	<tr>
-        		<td>Titel:</td><td><input type="text" name="titel" value=""></td>
-        		<td width="50"></td>
-        		<td>Isbn:</td><td><input type="text" name="isbn" value=""></td> 
-        		<td width="50"></td>       	
-        		<td>Richting:</td><td><select name="isRichting" form="richting">
-        			<option value="empty"></option>
-                        <% 
-                            List<String> allRichting = (List<String>)session.getAttribute("richting");
-                            for (String richting : allRichting) {
-                                %><option value="<%= richting%>"><%= richting%></option>
-                                <%
-                            }
-                        %>
-        		</select></td>        		
-        	</tr>
-        	<tr>
-        		<td></td>
-        		<td></td>
-        		<td></td>
-        		<td><input type="submit" value="Zoek"></td>
-        		<td><input type="reset" value="Leeg velden"></td>
-        		<td></td>
-        		<td></td>
-        		<td></td><input type="hidden" name="test" value=""></input>
-        	</tr>
-        </table>
-        </form>
+    <div id="templatemo_slider">
+    	 <div class="slider-wrapper theme-orman">
+		<div id="slider" class="nivoSlider">
+       	  <img src="images/boekenbeurs.jpg" />
+          <img src="images/cvoantwerpen.PNG" />
+          <img src="images/moodle.PNG" />
         </div>
-        <div id="list">
+            <div class="nivo-controlNav-bg"></div>
+      </div> 
+		<script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
+        <script type="text/javascript">
+        $(window).load(function() {
+            $('#slider').nivoSlider({
+				controlNav:true
+			});
+        });
+        </script>
+    </div><!-- END of templatemo_slider -->
+<div id="templatemo_main">
+       	<h1>Aangeboden boeken</h1> 
+        <div id="list">      
         <table width="900" id="OverviewList">
+          <tbody>
             <tr>
-              <th width="400">Titel</th>              
-              <th>Auteur</th>
-              <th>Isbn</th>
-              <th>Richting</th>
-              <th></th>               
+              <th scope="col" width="600">Titel</th>              
+              <th scope="col">Conditie</th>
+              <th scope="col">Prijs</th>
             </tr>
-            <% List<Boek> alleBoeken = (List<Boek>)session.getAttribute("boeken");
-            for (Boek boek : alleBoeken) {
+           <%
+                    List<AangebodenBoek> lijstAangebodenBoeken = (List<AangebodenBoek>)session.getAttribute("mijnBoeken");
+                for (AangebodenBoek boek : lijstAangebodenBoeken) {
                         %> <tr>
                             <td>
-                                <%= boek.getTitel()%>
+                                <%= boek.getBoekID().getTitel()%>      
                             </td>
                             <td>
-                                <%= boek.getAuteur()%>
+                                <%= boek.getConditie()%>
                             </td>
                             <td>
-                                <%= boek.getIsbn()%>
+                                <%= boek.getPrijs()%> EUR
                             </td>
-                            <td>
-                                <%= boek.getRichting()%>
-                            </td>
-                                <td><a href="/Web_BoekenMarkt/NieuwBoekStp2Servlet?BoekID=<%= boek.getId()%>" class="more">Select</a></td>
+                            <td><a href="/Web_BoekenMarkt/DetailAangBoekServlet?BoekID=<%= boek.getId()%>" class="more">Detail</a></td>
                         </tr>
                             <%
                     }
-                %>            
+                %>   
+          </tbody>
         </table>
-        </div>
+	</div>
+    </div>
         <div class="clear"></div>
-  </div>    
     </div><!-- END of templatemo_main -->
-<div id="templatemo_bottom_wrapper">
+    <div id="templatemo_bottom_wrapper">
 	<div id="templatemo_bottom">
     	<div class="col one_fourth">
             <h4>Disclaimer</h4>

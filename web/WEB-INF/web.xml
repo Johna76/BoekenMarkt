@@ -48,6 +48,14 @@
         <servlet-name>DeleteMijnBoekServlet</servlet-name>
         <servlet-class>Servlets.DeleteMijnBoekServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ZoekpgWeegevenServlet</servlet-name>
+        <servlet-class>Servlets.ZoekpgWeegevenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ZoekResultaatServlet</servlet-name>
+        <servlet-class>Servlets.ZoekResultaatServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistratieServlet</servlet-name>
         <url-pattern>/RegistratieServlet</url-pattern>
@@ -95,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>DeleteMijnBoekServlet</servlet-name>
         <url-pattern>/DeleteMijnBoekServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ZoekpgWeegevenServlet</servlet-name>
+        <url-pattern>/ZoekpgWeegevenServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ZoekResultaatServlet</servlet-name>
+        <url-pattern>/ZoekResultaatServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

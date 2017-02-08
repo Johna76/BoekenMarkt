@@ -23,10 +23,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Johna
  */
-public class FilteredBoekList extends HttpServlet {
+public class ZoekpgWeegevenServlet extends HttpServlet {
+
     @EJB
     BoekEJB boekService;
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,48 +41,16 @@ public class FilteredBoekList extends HttpServlet {
             throws ServletException, IOException {
         
         ArrayList<String> allRichting = boekService.getAllRichtingen();
-        String richting = request.getParameter("isRichting");
-        String titel = request.getParameter("titel");
-        String isbn = request.getParameter("isbn");
-        List<Boek> filteredList;
-        
-        if(!richting.equals("empty") && !titel.equals("") && !isbn.equals("") ){
-            filteredList = boekService.findBoekByRichtTitelIsbn(richting, titel, isbn);
-        }
-        else if(!richting.equals("empty") && !titel.equals("") && isbn.equals("")){
-            filteredList = boekService.findBoekByRichtTitel(richting, titel);
-        }
-        else if(!richting.equals("empty") && titel.equals("") && !isbn.equals("")){
-            filteredList = boekService.findBoekByRichtIsbn(richting, isbn);
-        }
-        else if(richting.equals("empty") && !titel.equals("") && !isbn.equals("")){
-            filteredList = boekService.findBoekByTitelIsbn(titel, isbn);
-        }
-        else if(richting.equals("empty") && titel.equals("") && !isbn.equals("")){
-            filteredList = boekService.findBoekByIsbn(isbn);
-        }
-        else if(richting.equals("empty") && !titel.equals("") && isbn.equals("")){
-            filteredList = boekService.findBoekByTitel(titel);
-        }
-        else if(!richting.equals("empty") && titel.equals("") && isbn.equals("")){
-            filteredList = boekService.findBoekByRichting(richting);
-        }
-        else{
-            filteredList = boekService.getAllBoeken();
-        }
+        List<Boek> allBoek = boekService.getAllBoeken();
         
         HttpSession session = request.getSession();
         session.setAttribute("richting", allRichting);
-        session.setAttribute("boeken", filteredList);
+        session.setAttribute("boeken", allBoek);
+                
         
-        if((request.getParameter("test")).equals("search")){
-                RequestDispatcher rd = request.getRequestDispatcher("zoek.jsp");
-                rd.forward(request, response);
-            }
-        else{        
-        RequestDispatcher rd = request.getRequestDispatcher("nieuwBoekStp1.jsp");
+        
+        RequestDispatcher rd = request.getRequestDispatcher("zoek.jsp");
         rd.forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

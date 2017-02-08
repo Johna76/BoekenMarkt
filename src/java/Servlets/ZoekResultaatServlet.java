@@ -5,8 +5,8 @@
  */
 package Servlets;
 
-import Beans.BoekEJB;
-import DAL.Boek;
+import Beans.AangebodenBoekEJB;
+import DAL.AangebodenBoek;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,10 +23,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Johna
  */
-public class FilteredBoekList extends HttpServlet {
-    @EJB
-    BoekEJB boekService;
+public class ZoekResultaatServlet extends HttpServlet {
 
+    @EJB
+    AangebodenBoekEJB aangBoekService;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,49 +40,21 @@ public class FilteredBoekList extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ArrayList<String> allRichting = boekService.getAllRichtingen();
-        String richting = request.getParameter("isRichting");
-        String titel = request.getParameter("titel");
-        String isbn = request.getParameter("isbn");
-        List<Boek> filteredList;
+        int id = Integer.parseInt(request.getParameter("BoekID"));
         
-        if(!richting.equals("empty") && !titel.equals("") && !isbn.equals("") ){
-            filteredList = boekService.findBoekByRichtTitelIsbn(richting, titel, isbn);
-        }
-        else if(!richting.equals("empty") && !titel.equals("") && isbn.equals("")){
-            filteredList = boekService.findBoekByRichtTitel(richting, titel);
-        }
-        else if(!richting.equals("empty") && titel.equals("") && !isbn.equals("")){
-            filteredList = boekService.findBoekByRichtIsbn(richting, isbn);
-        }
-        else if(richting.equals("empty") && !titel.equals("") && !isbn.equals("")){
-            filteredList = boekService.findBoekByTitelIsbn(titel, isbn);
-        }
-        else if(richting.equals("empty") && titel.equals("") && !isbn.equals("")){
-            filteredList = boekService.findBoekByIsbn(isbn);
-        }
-        else if(richting.equals("empty") && !titel.equals("") && isbn.equals("")){
-            filteredList = boekService.findBoekByTitel(titel);
-        }
-        else if(!richting.equals("empty") && titel.equals("") && isbn.equals("")){
-            filteredList = boekService.findBoekByRichting(richting);
-        }
-        else{
-            filteredList = boekService.getAllBoeken();
+        List<AangebodenBoek> allBoeken = aangBoekService.getAllAangebodenBoeken();
+        ArrayList<AangebodenBoek> mijnBoeken = new ArrayList<>();
+        for(AangebodenBoek boek : allBoeken){
+            if(boek.getBoekID().getId().equals(id)){
+                mijnBoeken.add(boek);
+            }
         }
         
         HttpSession session = request.getSession();
-        session.setAttribute("richting", allRichting);
-        session.setAttribute("boeken", filteredList);
+        session.setAttribute("mijnBoeken", mijnBoeken);
         
-        if((request.getParameter("test")).equals("search")){
-                RequestDispatcher rd = request.getRequestDispatcher("zoek.jsp");
-                rd.forward(request, response);
-            }
-        else{        
-        RequestDispatcher rd = request.getRequestDispatcher("nieuwBoekStp1.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("zoekResultaat.jsp");
         rd.forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

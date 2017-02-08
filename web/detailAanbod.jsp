@@ -52,6 +52,7 @@ function clearText(field)
         <ul>
             <li><a href="/Web_BoekenMarkt/ListAangBoekenServlet" class="selected">Home</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="/Web_BoekenMarkt/ZoekpgWeegevenServlet">Zoek</a></li>
             <li><a href="/Web_BoekenMarkt/NieuwBoekStp1Servlet">Verkoop boek</a></li>
             <li><a href="/Web_BoekenMarkt/OverzichtMijnBoekenServlet">Mijn boeken</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -65,7 +66,7 @@ function clearText(field)
             String datum = DateFormat.getDateInstance(DateFormat.DEFAULT).format(aangBoek.getDatum());
             String locatieAfb = aangBoek.getBoekID().getAfbeelding();
             %>
-        <img id="afb_boek" src="images/templatemo_image_10_l.jpg" alt="" width="200" height="100" />
+        <img id="afb_boek" src="images/background.jpg" alt="" width="200" height="100" />
         <table width="400" id="DetailList"> 
             <tr>
               <td>Titel:</td><td><%= aangBoek.getBoekID().getTitel()%></td>
