@@ -22,14 +22,21 @@ public class UserEJB {
     private EntityManager em;
          
     
-    public User CreateUser(User u){
+    public User createUser(User u){
         em.persist(u);
         return u;
     }
     
-    public User FindByStudentennummer(String studentennummer){
+    public User findByStudentennummer(String studentennummer){
         Query query = em.createNamedQuery("User.findByStudentennummer").setParameter("studentennummer", studentennummer);
         User u = (User)query.getSingleResult();
         return u;
     }
+    
+    public User findById(int id){
+        Query query = em.createNamedQuery("User.findById").setParameter("id", id);
+        User u = (User)query.getSingleResult();
+        return u;
+    }
+    
 }

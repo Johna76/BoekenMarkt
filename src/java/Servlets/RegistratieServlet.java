@@ -51,7 +51,7 @@ public class RegistratieServlet extends HttpServlet {
         u.setEmailAdres(email);
         u.setWachtwoord(wachtwoord);
         
-        User user = UserService.CreateUser(u);
+        User user = UserService.createUser(u);
         
         HttpSession session = request.getSession();
         session.setAttribute("user", user);

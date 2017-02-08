@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BoekenMarkt.com</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="css/orman.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />	
+
+<link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/ddsmoothmenu.js">
+</script>
+
+<script language="javascript" type="text/javascript">
+
+ddsmoothmenu.init({
+	mainmenuid: "templatemo_menu", //menu DIV id
+	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+	classname: 'ddsmoothmenu', //class added to menu's outer DIV
+	//customtheme: ["#1c5a80", "#18374a"],
+	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+})
+
+function clearText(field)
+{
+    if (field.defaultValue == field.value) field.value = '';
+    else if (field.value == '') field.value = field.defaultValue;
+}
+</script>
+
+<link rel="stylesheet" href="css/slimbox2.css" type="text/css" media="screen" /> 
+<script type="text/JavaScript" src="js/slimbox2.js"></script> 
+<!--  t e m p l a t e m o  372  t i t a n i u m  -->
+</head>
+<body>
+<div id="templatemo_wrapper">
+	<div id="templatemo_header">
+    	<div id="site_title"><a href="#">BoekenMarkt.com</a></div>    	
+    </div><!-- END of templatemo_header -->
+    <div id="templatemo_menu" class="ddsmoothmenu">
+        <ul>
+            <li><a href="/Web_BoekenMarkt/ListAangBoekenServlet">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="/Web_BoekenMarkt/NieuwBoekStp1Servlet">Verkoop boek</a></li>
+            <li><a href="/Web_BoekenMarkt/OverzichtMijnBoekenServlet">Mijn boeken</a></li>
+            <li><a href="contact.html" class="selected">Contact</a></li>
+        </ul>
+        <br style="clear: left" />
+    </div> <!-- end of templatemo_menu -->
+    <div id="templatemo_main">    	
+        <h2>Contact Information</h2>
+         <div class="col two-third">         
+         <p>Indien u vragen of opmerkingen heeft over de werking van deze website, gelieve ons te contacteren via onderstaande formulier. Wij zullen u z.s.m. antwoorden.</p>
+         <div class="clear h40"></div>
+            <div id="contact_form">
+              <form method="post" name="contact" action="confirmation.html">
+                    <label for="author">Name:</label> <input type="text" id="author" name="author" class="input_field" />
+                    <div class="clear h20"></div>
+                    <label for="email">Email:</label> <input type="text" id="email" name="email" class="input_field" />
+                    <div class="clear h20"></div>
+                    
+                    <label for="phone">Phone:</label> <input type="text" name="phone" id="phone" class="input_field" />
+                    <div class="clear h20"></div>
+                    <label for="text">Message:</label> <textarea id="text" name="text" rows="0" cols="0" class="required"></textarea>
+                  	<div class="clear h20"></div>
+                    
+                    <input type="submit" class="submit_btn left" name="submit" id="submit" value="Send" />
+                  	<input type="reset" class="submit_btn right" name="reset" id="reset" value="Reset" />
+                    
+                </form>
+            </div> 
+		</div>
+<div class="clear"></div> 
+    </div><!-- END of templatemo_main -->
+</div><!-- END of templatemo_wrapper -->
+<div id="templatemo_bottom_wrapper">
+	<div id="templatemo_bottom">
+    	<div class="col one_fourth">
+            <h4>Disclaimer</h4>
+            <p>
+            Alleen leerlingen van het CVO Antwerpen krijgen toegang tot deze website. In geen enkel geval is het CVO verantwoordelijk voor de transacties die via deze website zullen plaatsvinden. </p>
+        </div>
+	<div class="col one_fourth">
+            <ul class="no_bullet"><li></li></ul>
+    </div>
+    <div class="col one_fourth">
+    <ul class="no_bullet"><li></li></ul>
+    </div>
+    <div class="col one_fourth no_margin_right">
+    	<h4>Sociale netwerk sites</h4>
+        <ul class="no_bullet">
+        	<li><a href="https://twitter.com/cvoantwerpen">Twitter</a></li>
+            <li><a href="https://www.facebook.com/cvoAntwerpen">Facebook</a></li>
+            <li><a href="http://www.cvoantwerpen.be/home/">CVO Antwerpen</a></li>
+        </ul>
+    </div>
+        
+        <div class="clear"></div>
+    </div><!-- END of templatemo_bottom -->
+    </div><!-- END of templatemo_bottom_wrapper -->    
+<div id="templatemo_footer_wrapper">    
+    <div id="templatemo_footer">
+    	<p>Copyright © 2017 CVO Antwerpen</p>
+    </div><!-- END of templatemo_footer -->
+</div><!-- END of templatemo_footer_wrapper -->
+</body>
+</html>

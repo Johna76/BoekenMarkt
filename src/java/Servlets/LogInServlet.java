@@ -25,6 +25,9 @@ import javax.servlet.http.HttpSession;
 public class LogInServlet extends HttpServlet {
     @EJB
     LoginEJB loginService;
+    
+    @EJB
+    UserEJB userService;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,17 +42,23 @@ public class LogInServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String userName = request.getParameter("userName");
-        String passwordInput = request.getParameter("password");       
         
+        String passwordInput = request.getParameter("password");
+        String error = "";
+        User u = userService.findByStudentennummer(userName);
+        request.getSession().setAttribute("user", u);
                       
         boolean check = loginService.LoginCorrect(userName, passwordInput);
         
         if(check == true){
-            RequestDispatcher rd = request.getRequestDispatcher("/ListAangBoekServlet");
+            RequestDispatcher rd = request.getRequestDispatcher("/ListAangBoekenServlet");
             rd.forward(request, response);
         }
         else{
-            RequestDispatcher rd = request.getRequestDispatcher("fout.html");
+            error="verkeerde login";
+            HttpSession session = request.getSession();
+            session.setAttribute("errorMessage", error);
+            RequestDispatcher rd = request.getRequestDispatcher("authentification.jsp");
             rd.forward(request, response);
         }
     }

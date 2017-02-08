@@ -23,26 +23,22 @@ public class LoginEJB {
     UserEJB userService;
 
     public boolean LoginCheck;
-    public final User user;
 
     @PersistenceContext(unitName = "Web_BoekenMarktPU")
     private EntityManager em;
 
     public LoginEJB() {
         this.LoginCheck = false;
-        this.user = new User();
     }
 
     public boolean LoginCorrect(String studentnummer, String password) {
         boolean check;
 
-        User u = userService.FindByStudentennummer(studentnummer);
+        User u = userService.findByStudentennummer(studentnummer);
 
         if (u.getWachtwoord().equals(password)) {
             check = true;
-            LoginCheck = true;
-            user.setId(u.getId());
-            user.setNaam(u.getNaam());
+            LoginCheck = true;            
         } else {
             check = false;
         }

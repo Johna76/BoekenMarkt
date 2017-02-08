@@ -6,6 +6,7 @@
 package Beans;
 
 import DAL.AangebodenBoek;
+import DAL.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -24,19 +25,30 @@ public class AangebodenBoekEJB {
     private EntityManager em;
     
     
-    public AangebodenBoek CreateAangebodenBoek(AangebodenBoek b){
+    public AangebodenBoek createAangebodenBoek(AangebodenBoek b){
         em.persist(b);
         return b;
     }
     
     
-    public List<AangebodenBoek> GetAllAangebodenBoeken(){
+    public List<AangebodenBoek> getAllAangebodenBoeken(){
         Query query = em.createNamedQuery("AangebodenBoek.findAll");
         List<AangebodenBoek> resultList = query.getResultList();
         return resultList;        
     }
+          
     
+    public AangebodenBoek getBoekById(int id){
+        Query query = em.createNamedQuery("AangebodenBoek.findById").setParameter("id", id);
+        AangebodenBoek b = (AangebodenBoek)query.getSingleResult();
+        return b;
+    }
     
-    
+    public void deleteAangBoek(int id){
+        Query query = em.createNativeQuery("DELETE b FROM tbl_aangebodenboeken b WHERE b.id = ?");
+        query.setParameter(1, id);
+        int resultList = query.executeUpdate();
+    }
+       
     
 }

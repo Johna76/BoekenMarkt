@@ -1,80 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>RegistreerServlet</servlet-name>
-        <servlet-class>Servlets.RegistreerServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>TestServlet</servlet-name>
-        <servlet-class>Servlets.TestServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RegistratieServlet</servlet-name>
         <servlet-class>Servlets.RegistratieServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NieuwBoekStp2Servlet</servlet-name>
+        <servlet-class>Servlets.NieuwBoekStp2Servlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogInServlet</servlet-name>
         <servlet-class>Servlets.LogInServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListAangBoekServlet</servlet-name>
-        <servlet-class>Servlets.ListAangBoekServlet</servlet-class>
+        <servlet-name>NieuwBoekStp1Servlet</servlet-name>
+        <servlet-class>Servlets.NieuwBoekStp1Servlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateAangBoekServlet</servlet-name>
-        <servlet-class>Servlets.CreateAangBoekServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>BoekTitelServlet</servlet-name>
-        <servlet-class>Servlets.BoekTitelServlet</servlet-class>
+        <servlet-name>ListAangBoekenServlet</servlet-name>
+        <servlet-class>Servlets.ListAangBoekenServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>FilteredBoekList</servlet-name>
         <servlet-class>Servlets.FilteredBoekList</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>NewBoekServlet</servlet-name>
-        <servlet-class>Servlets.NewBoekServlet</servlet-class>
+        <servlet-name>DetailAangBoekServlet</servlet-name>
+        <servlet-class>Servlets.DetailAangBoekServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>RegistreerServlet</servlet-name>
-        <url-pattern>/RegistreerServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TestServlet</servlet-name>
-        <url-pattern>/TestServlet</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>BuyConfirmationEmailServlet</servlet-name>
+        <servlet-class>Servlets.BuyConfirmationEmailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NieuwBoekStp3Servlet</servlet-name>
+        <servlet-class>Servlets.NieuwBoekStp3Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OverzichtMijnBoekenServlet</servlet-name>
+        <servlet-class>Servlets.OverzichtMijnBoekenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailMijnBoekServlet</servlet-name>
+        <servlet-class>Servlets.DetailMijnBoekServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteMijnBoekServlet</servlet-name>
+        <servlet-class>Servlets.DeleteMijnBoekServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistratieServlet</servlet-name>
         <url-pattern>/RegistratieServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NieuwBoekStp2Servlet</servlet-name>
+        <url-pattern>/NieuwBoekStp2Servlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListAangBoekServlet</servlet-name>
-        <url-pattern>/ListAangBoekServlet</url-pattern>
+        <servlet-name>NieuwBoekStp1Servlet</servlet-name>
+        <url-pattern>/NieuwBoekStp1Servlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateAangBoekServlet</servlet-name>
-        <url-pattern>/CreateAangBoekServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>BoekTitelServlet</servlet-name>
-        <url-pattern>/BoekTitelServlet</url-pattern>
+        <servlet-name>ListAangBoekenServlet</servlet-name>
+        <url-pattern>/ListAangBoekenServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FilteredBoekList</servlet-name>
         <url-pattern>/FilteredBoekList</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>NewBoekServlet</servlet-name>
-        <url-pattern>/NewBoekServlet</url-pattern>
+        <servlet-name>DetailAangBoekServlet</servlet-name>
+        <url-pattern>/DetailAangBoekServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuyConfirmationEmailServlet</servlet-name>
+        <url-pattern>/BuyConfirmationEmailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NieuwBoekStp3Servlet</servlet-name>
+        <url-pattern>/NieuwBoekStp3Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OverzichtMijnBoekenServlet</servlet-name>
+        <url-pattern>/OverzichtMijnBoekenServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailMijnBoekServlet</servlet-name>
+        <url-pattern>/DetailMijnBoekServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMijnBoekServlet</servlet-name>
+        <url-pattern>/DeleteMijnBoekServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>Authentification.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

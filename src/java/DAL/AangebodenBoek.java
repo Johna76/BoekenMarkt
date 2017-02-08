@@ -34,9 +34,11 @@ import javax.validation.constraints.Size;
     , @NamedQuery(name = "AangebodenBoek.findById", query = "SELECT a FROM AangebodenBoek a WHERE a.id = :id")
     , @NamedQuery(name = "AangebodenBoek.findByPrijs", query = "SELECT a FROM AangebodenBoek a WHERE a.prijs = :prijs")
     , @NamedQuery(name = "AangebodenBoek.findByDatum", query = "SELECT a FROM AangebodenBoek a WHERE a.datum = :datum")
+    , @NamedQuery(name = "AangebodenBoek.findByUserID", query = "SELECT a FROM AangebodenBoek a WHERE a.userID = :userID")
     , @NamedQuery(name = "AangebodenBoek.findByConditie", query = "SELECT a FROM AangebodenBoek a WHERE a.conditie = :conditie")})
 public class AangebodenBoek implements Serializable {
 
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,6 +59,9 @@ public class AangebodenBoek implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "conditie")
     private String conditie;
+    @Size(max = 535)
+    @Column(name = "Omschrijving")
+    private String omschrijving;
     @JoinColumn(name = "boek_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Boek boekID;
@@ -109,6 +114,14 @@ public class AangebodenBoek implements Serializable {
     public void setConditie(String conditie) {
         this.conditie = conditie;
     }
+    
+    public String getOmschrijving() {
+        return omschrijving;
+    }
+
+    public void setOmschrijving(String omschrijving) {
+        this.omschrijving = omschrijving;
+    }
 
     public Boek getBoekID() {
         return boekID;
@@ -150,5 +163,7 @@ public class AangebodenBoek implements Serializable {
     public String toString() {
         return "DAL.AangebodenBoek[ id=" + id + " ]";
     }
+
+    
     
 }

@@ -9,6 +9,7 @@ import Beans.BoekEJB;
 import DAL.Boek;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -38,41 +39,42 @@ public class FilteredBoekList extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        ArrayList<String> allRichting = boekService.getAllRichtingen();
         String richting = request.getParameter("isRichting");
         String titel = request.getParameter("titel");
         String isbn = request.getParameter("isbn");
         List<Boek> filteredList;
         
         if(!richting.equals("empty") && !titel.equals("") && !isbn.equals("") ){
-            filteredList = boekService.FindBoekByRichtTitelIsbn(richting, titel, isbn);
+            filteredList = boekService.findBoekByRichtTitelIsbn(richting, titel, isbn);
         }
         else if(!richting.equals("empty") && !titel.equals("") && isbn.equals("")){
-            filteredList = boekService.FindBoekByRichtTitel(richting, titel);
+            filteredList = boekService.findBoekByRichtTitel(richting, titel);
         }
         else if(!richting.equals("empty") && titel.equals("") && !isbn.equals("")){
-            filteredList = boekService.FindBoekByRichtIsbn(richting, isbn);
+            filteredList = boekService.findBoekByRichtIsbn(richting, isbn);
         }
         else if(richting.equals("empty") && !titel.equals("") && !isbn.equals("")){
-            filteredList = boekService.FindBoekByTitelIsbn(titel, isbn);
+            filteredList = boekService.findBoekByTitelIsbn(titel, isbn);
         }
         else if(richting.equals("empty") && titel.equals("") && !isbn.equals("")){
-            filteredList = boekService.FindBoekByIsbn(isbn);
+            filteredList = boekService.findBoekByIsbn(isbn);
         }
         else if(richting.equals("empty") && !titel.equals("") && isbn.equals("")){
-            filteredList = boekService.FindBoekByTitel(titel);
+            filteredList = boekService.findBoekByTitel(titel);
         }
         else if(!richting.equals("empty") && titel.equals("") && isbn.equals("")){
-            filteredList = boekService.FindBoekByRichting(richting);
+            filteredList = boekService.findBoekByRichting(richting);
         }
         else{
-            filteredList = boekService.GetAllAangebodenBoeken();
+            filteredList = boekService.getAllBoeken();
         }
         
         HttpSession session = request.getSession();
-        session.setAttribute("filteredList", filteredList);
+        session.setAttribute("richting", allRichting);
+        session.setAttribute("boeken", filteredList);
         
-        
-        RequestDispatcher rd = request.getRequestDispatcher("OverviewFiltered.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("nieuwBoekStp1.jsp");
         rd.forward(request, response);
     }
 

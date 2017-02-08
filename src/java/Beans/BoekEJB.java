@@ -23,14 +23,20 @@ public class BoekEJB {
     @PersistenceContext(unitName = "Web_BoekenMarktPU")
     private EntityManager em;
     
-     public List<Boek> GetAllAangebodenBoeken(){
+     public List<Boek> getAllBoeken(){
         Query query = em.createNamedQuery("Boek.findAll");
         List<Boek> resultList = query.getResultList();
         return resultList;        
     }
      
-    public ArrayList<String> GetAllRichtingen(){
-         List<Boek> allBoeken = GetAllAangebodenBoeken();
+     public Boek getbyId(int id){
+        Query query = em.createNamedQuery("Boek.findById").setParameter("id", id);
+        Boek b = (Boek)query.getSingleResult();
+        return b;        
+    }
+     
+    public ArrayList<String> getAllRichtingen(){
+         List<Boek> allBoeken = getAllBoeken();
          ArrayList<String> allRichtingen = new ArrayList<>();
          allRichtingen.add(allBoeken.get(0).getRichting());
          for (Boek boek : allBoeken) {
@@ -41,8 +47,8 @@ public class BoekEJB {
          return allRichtingen;
      }
     
-    public List<Boek> FindBoekByRichtTitelIsbn(String richting, String titel, String isbn){
-        Query query = em.createNativeQuery("SELECT b FROM Boek b WHERE b.richting = ?, b.titel = ?, b.isbn = ?");
+    public List<Boek> findBoekByRichtTitelIsbn(String richting, String titel, String isbn){
+        Query query = em.createNativeQuery("SELECT * FROM tbl_boeken b WHERE b.richting = ? AND b.titel = ? AND b.isbn = ?", Boek.class);
         query.setParameter(1, richting);
         query.setParameter(2, titel);
         query.setParameter(3, isbn);
@@ -50,44 +56,45 @@ public class BoekEJB {
         return resultList;
     }
     
-    public List<Boek> FindBoekByRichtTitel(String richting, String titel){
-        Query query = em.createNativeQuery("SELECT b FROM Boek b WHERE b.richting = ?, b.titel = ?");
+    public List<Boek> findBoekByRichtTitel(String richting, String titel){
+        Query query = em.createNativeQuery("SELECT * FROM tbl_boeken b WHERE b.richting = ? AND b.titel LIKE ?", Boek.class);
         query.setParameter(1, richting);
-        query.setParameter(2, titel);
+        query.setParameter(2, "%" + titel + "%");
         List<Boek> resultList = query.getResultList();
         return resultList;
     }
     
-    public List<Boek> FindBoekByRichtIsbn(String richting, String isbn){
-        Query query = em.createNativeQuery("SELECT b FROM Boek b WHERE b.richting = ?, b.isbn = ?");
+    public List<Boek> findBoekByRichtIsbn(String richting, String isbn){
+        Query query = em.createNativeQuery("SELECT * FROM tbl_boeken b WHERE b.richting = ? AND b.isbn LIKE ?", Boek.class);
         query.setParameter(1, richting);
-        query.setParameter(2, isbn);
+        query.setParameter(2, "%" + isbn + "%");
         List<Boek> resultList = query.getResultList();
         return resultList;
     }
     
-    public List<Boek> FindBoekByTitelIsbn(String titel, String isbn){
-        Query query = em.createNativeQuery("SELECT b FROM Boek b WHERE b.titel = ?, b.isbn = ?");
-        query.setParameter(1, titel);
-        query.setParameter(2, isbn);
+    public List<Boek> findBoekByTitelIsbn(String titel, String isbn){
+        Query query = em.createNativeQuery("SELECT * FROM tbl_boeken b WHERE b.titel LIKE ? AND b.isbn LIKE ?", Boek.class);
+        query.setParameter(1, "%" + titel + "%");
+        query.setParameter(2,"%" + isbn + "%");
         List<Boek> resultList = query.getResultList();
         return resultList;
     }
     
-    public List<Boek> FindBoekByTitel(String titel){
-        Query query = em.createNativeQuery("SELECT b FROM Boek b WHERE b.titel = ?");
-        query.setParameter(1,titel);
+    public List<Boek> findBoekByTitel(String titel){
+        Query query = em.createNativeQuery("SELECT * FROM tbl_boeken b WHERE b.titel LIKE ?", Boek.class);
+        query.setParameter(1, "%" + titel + "%");
         List<Boek> resultList = query.getResultList();
         return resultList;
     }
     
-    public List<Boek> FindBoekByIsbn(String isbn){
-        Query query = em.createNamedQuery("Boek.findByIsbn").setParameter("isbn", isbn);
+    public List<Boek> findBoekByIsbn(String isbn){
+        Query query = em.createNativeQuery("SELECT * FROM tbl_boeken b WHERE b.isbn LIKE ?", Boek.class);
+        query.setParameter(1, "%" + isbn + "%");
         List<Boek> resultList = query.getResultList();
         return resultList;
     }
     
-    public List<Boek> FindBoekByRichting(String richting){
+    public List<Boek> findBoekByRichting(String richting){
         Query query = em.createNamedQuery("Boek.findByRichting").setParameter("richting", richting);
         List<Boek> resultList = query.getResultList();
         return resultList;
